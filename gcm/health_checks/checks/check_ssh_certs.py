@@ -4,13 +4,11 @@
 
 import re
 import subprocess
-import sys
 from collections.abc import Collection
 from dataclasses import dataclass
 from typing import Optional, Protocol
 
 import click
-from gcm.health_checks.check_utils.output_utils import CheckOutput
 from gcm.health_checks.check_utils.runtime import HealthCheckRuntime
 from gcm.health_checks.click import (
     common_arguments,

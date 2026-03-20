@@ -1,8 +1,6 @@
 # Copyright (c) Meta Platforms, Inc. and affiliates.
 # All rights reserved.
-import logging
 import re
-import sys
 from typing import Callable, Collection, Optional
 
 import click
@@ -57,7 +55,9 @@ def check_hca(
     """
     Check if HCAs are present and count matches the expectation.
     """
-    runner = obj if obj is not None else shell_command
+    runner = obj
+    if runner is None:
+        runner = shell_command
 
     with HealthCheckRuntime(
         cluster=cluster,

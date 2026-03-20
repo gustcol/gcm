@@ -1,7 +1,6 @@
 # Copyright (c) Meta Platforms, Inc. and affiliates.
 # All rights reserved.
 import json
-import logging
 import os
 from dataclasses import dataclass
 from enum import auto, Enum

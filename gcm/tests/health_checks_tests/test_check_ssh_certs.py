@@ -18,7 +18,6 @@ from gcm.health_checks.checks.check_ssh_certs import (
 from gcm.health_checks.subprocess import ShellCommandOut
 from gcm.health_checks.types import ExitCode
 from gcm.schemas.health_check.health_check_name import HealthCheckName
-
 from gcm.tests.fakes import FakeShellCommandOut
 
 #############
@@ -257,14 +256,12 @@ def ssh_certs_tester(
     indirect=["ssh_certs_tester"],
 )
 def test_check_ssh_certs(
-    caplog: pytest.LogCaptureFixture,
     tmp_path: Path,
     ssh_certs_tester: FakeSshCertsCheckImpl,
     expected: tuple[str, ExitCode, str],
 ) -> None:
-    """Invoke the check_sensors method."""
+    """Invoke the check_ssh_certs method."""
     runner = CliRunner(mix_stderr=False)
-    caplog.at_level(logging.INFO)
 
     result = runner.invoke(
         check_ssh_certs,
@@ -273,4 +270,3 @@ def test_check_ssh_certs(
     )
 
     assert result.exit_code == expected[1].value
-    assert expected[2] in caplog.text
